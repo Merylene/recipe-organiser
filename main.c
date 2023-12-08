@@ -3,6 +3,8 @@
 #include <stdlib.h>
 
 #include "utils.h"
+#include "view.h"
+#include "admin.h"
 
 
 int main (int argc, char *argv[]){
@@ -10,14 +12,17 @@ int main (int argc, char *argv[]){
         fprintf(stderr,"Usage: ./recipe.exe mode(edit/view)\n");
         return 0;
     }
+
     char *mode = change_case(argv[1]); //changes the mode selection to a lower case
 
-    printf("mode = %s \n",mode);
+
     if (strcmp(mode,"view")==0){
         fprintf(stdout,"Currently in Viewing mode!\n");
+        view();
     }
     else if (strcmp(mode,"edit")==0){
         fprintf(stdout,"Currently in Editing mode\n");
+        edit();
     }
     else {
         fprintf(stderr,"Usage: ./recipe.exe mode(edit/view)\n");
