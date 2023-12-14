@@ -1,10 +1,8 @@
 #include "utils.h"
-#include <string.h>
-#include <ctype.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <sys/stat.h>
 
-void _tolower(char *str){
+
+void __tolower(char *str){
     while (*str!='\0'){
         if (*str>'A'&&*str<'Z'){
             *str+='a'-'A';
@@ -21,8 +19,27 @@ char *change_case(char const *str){
         exit(1);
     }
     strcpy(new,str);
-    _tolower(new);
+    __tolower(new);
     return new;
+}
+
+
+bool search (char const *name){
+    FILE *menu =fopen(MENU,"a+");// used a+ for reading and appending of data
+    if (menu ==NULL){
+        fprintf(stderr,"%s not found\n",MENU);
+        exit(EXIT_FAILURE); //EXIT FAILURE = 1
+    }
+    printf("%s",name);
+    char *check = malloc(MAX_LENGTH*sizeof(char));
+    while (fscanf(menu,"%s",check)==1){
+        if (check==name){
+            return true;
+        }
+    }
+    free(check);
+    fclose(menu);
+    return false;
 }
 
 /*!
@@ -61,7 +78,7 @@ void encrypt (char *letter , char keyText)
         char keyText = takes in the encoding key to add with the letter
 @return NULL
 *//*______________________________________________________________*/
-void decrypt (char* letter , char keyText)
+void decrypt (char *letter , char keyText)
 {
     char temp = *letter;
     int expected = temp - keyText;
@@ -74,4 +91,18 @@ void decrypt (char* letter , char keyText)
         *letter = (char)expected;
     }
         
+}
+
+//used to create a directory/file
+void create_dir(char const* directory_name){
+        struct stat st = {0};
+
+    if (stat(directory_name, &st) == -1) { //stat is used to get the status of the directory
+        if (mkdir(directory_name, 0700) == -1) {
+            fprintf(stderr,"Unable to create directory %s",directory_name);//perror = fprintf(stderr, blah blah)
+            exit(EXIT_FAILURE);
+        }
+    } else {
+        fprintf(stdout,"Directory %s already exists\n",directory_name);
+    }
 }
