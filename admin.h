@@ -1,4 +1,1 @@
-
-
-void edit(void);
-void add(void);
+void edit (void);
