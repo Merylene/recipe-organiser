@@ -30,10 +30,10 @@ bool search (char const *name){
         fprintf(stderr,"%s not found\n",MENU);
         exit(EXIT_FAILURE); //EXIT FAILURE = 1
     }
-    printf("%s",name);
+    printf("%s\n",name);
     char *check = malloc(MAX_LENGTH*sizeof(char));
     while (fscanf(menu,"%s",check)==1){
-        if (check==name){
+        if (strcmp(check,name)==0){
             return true;
         }
     }

@@ -18,7 +18,18 @@ void view (void){
 
     }
     else if (exist == true){
-        fprintf(stdout,"Would you like to view the file?");
+        fprintf(stdout,"Would you like to view the file?\n(reply with 1 = no, 2 = yes)\n");
+        int response = 0;
+        scanf("%d",&response);
+        if (response == YES){
+            strcat(food,FILE_TYPE);
+            printf("what is food now: %s\n",food);
+            //read_data();
+        }
+        else if (response == NO){
+            printf("good bye\n");
+            exit(EXIT_SUCCESS);
+        }
     }
     free(food);
 }
