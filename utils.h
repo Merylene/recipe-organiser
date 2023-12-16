@@ -10,6 +10,8 @@
 #define DATA_PATH "./data/" //used for easy reference in the future
 #define MENU "./data/menu.txt" // used to make this a constant
 
+#define KEY_TEXT "Admin" //used for encryption
+
 //used to check if it is agreeable
 enum { NO = 1,YES };
 
@@ -28,3 +30,6 @@ void create_dir(char const* directory_name);
 
 //used to lower the case of a char
 void __tolower(char *str);
+
+//used to read data for a particular food
+void read_data(char const *food);
