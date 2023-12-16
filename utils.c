@@ -106,3 +106,20 @@ void create_dir(char const* directory_name){
         fprintf(stdout,"Directory %s already exists\n",directory_name);
     }
 }
+
+void read_data(char const *food){
+    FILE *f =fopen(food,"r");
+    if (f==NULL){
+        fprintf(stderr,"%s cannot be opened.\n",food);
+        exit(EXIT_FAILURE);
+    }
+    char *str = malloc(sizeof(char)*MAX_LENGTH);
+    while (fscanf(f,"%s",str)==1){
+        for (int i=0;str[i]!='\0';i++){
+            decrypt(str+i,KEY_TEXT[i%strlen(KEY_TEXT)]);
+        }
+        fprintf(stdout,"%s",str);
+    }
+
+    free(str);
+}
