@@ -9,22 +9,32 @@ This final project should help people to organise their recipes so that it could
 for edit password will be required (all passwords/recipes will be encypted so that the access point will only be the program)
 
 #How to install CMake on Ubuntu
-``> sudo apt-get -y install cmake
-> which cmake
-> cmake --version``
+```
+sudo apt-get -y install cmake
+which cmake
+cmake --version
+```
 
 #Usage of CMakelists.txt
 
 Navigate to the project 
-`cd /path/to/your/project`
+```
+cd /path/to/your/project
+```
 
 Create a direcctor to build files
-`mkdir build
-cd build`
+```
+mkdir build
+cd build
+```
 
 Run CMake
-`cmake .. `
+```
+cmake .. 
+```
 
 Run 
-`make`
+```
+make
+```
 
