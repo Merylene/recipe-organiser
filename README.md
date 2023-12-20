@@ -22,24 +22,16 @@ cmake --version
 
 #Usage of CMakelists.txt
 
-Navigate to the project 
+Navigate to the project (just an example)
 ```
-cd /path/to/your/project
+cd repo/recipe-organiser
 ```
 
-Create a directory to build files
+Create a directory to build and run 
 ```
 mkdir build
 cd build
-```
-
-Run CMake
-```
 cmake .. 
-```
-
-Run 
-```
 make
 ```
 
