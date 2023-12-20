@@ -1,5 +1,6 @@
 #include "utils.h"
 #include <sys/stat.h>
+//#include <io.h>
 
 
 void __tolower(char *str){
@@ -25,20 +26,33 @@ char *change_case(char const *str){
 
 
 bool search (char const *name){
-    FILE *menu =fopen(MENU,"a+");// used a+ for reading and appending of data
-    if (menu ==NULL){
-        fprintf(stderr,"%s not found\n",MENU);
-        exit(EXIT_FAILURE); //EXIT FAILURE = 1
+    // FILE *menu =fopen(MENU,"a+");// used a+ for reading and appending of data
+    // if (menu ==NULL){
+    //     fprintf(stderr,"%s not found\n",MENU);
+    //     exit(EXIT_FAILURE); //EXIT FAILURE = 1
+    // }
+    // printf("%s\n",name);
+    // char *check = malloc(MAX_LENGTH*sizeof(char));
+    // while (fscanf(menu,"%s",check)==1){
+    //     if (strcmp(check,name)==0){
+    //         return true;
+    //     }
+    // }
+    // free(check);
+    // fclose(menu);
+    char *file_name = malloc(MAX_LENGTH*sizeof(char));
+    strcpy(file_name,DATA_PATH);
+    printf("file_path is %s\n",file_name);
+    strcat(file_name,name);
+    printf("file_name is %s\n",file_name);
+    strcat(file_name,FILE_TYPE);
+    printf("file_name is now %s\n",file_name);
+    FILE *f =fopen(file_name, "r");
+    if (f !=NULL){
+        fprintf(stdout,"%s does exist!!\n",name);
+        fclose(f);
+        return true;
     }
-    printf("%s\n",name);
-    char *check = malloc(MAX_LENGTH*sizeof(char));
-    while (fscanf(menu,"%s",check)==1){
-        if (strcmp(check,name)==0){
-            return true;
-        }
-    }
-    free(check);
-    fclose(menu);
     return false;
 }
 
@@ -93,33 +107,47 @@ void decrypt (char *letter , char keyText)
         
 }
 
-//used to create a directory/file
-void create_dir(char const* directory_name){
-        struct stat st = {0};
+// //used to create a directory/file
+// void create_dir(char const* directory_name){
+//         struct stat st = {0};
 
-    if (stat(directory_name, &st) == -1) { //stat is used to get the status of the directory
-        if (mkdir(directory_name, 0700) == -1) {
-            fprintf(stderr,"Unable to create directory %s",directory_name);//perror = fprintf(stderr, blah blah)
-            exit(EXIT_FAILURE);
-        }
-    } else {
-        fprintf(stdout,"Directory %s already exists\n",directory_name);
-    }
-}
+//     if (stat(directory_name, &st) == -1) { //stat is used to get the status of the directory
+//         if (mkdir(directory_name,0700) == -1) {
+//             fprintf(stderr,"Unable to create directory %s\n",directory_name);//perror = fprintf(stderr, blah blah)
+//             exit(EXIT_FAILURE);
+//         }
+//     } else {
+//         fprintf(stdout,"Directory %s already exists\n",directory_name);
+//     }
+// }
 
 void read_data(char const *food){
-    FILE *f =fopen(food,"r");
+    char *foodFile = malloc(MAX_LENGTH*sizeof(char));
+    strcpy(foodFile,DATA_PATH);
+    strcat(foodFile,food);
+    FILE *f =fopen(foodFile,"r");
     if (f==NULL){
-        fprintf(stderr,"%s cannot be opened.\n",food);
+        fprintf(stderr,"%s's DATA PATH :%s cannot be opened.\n",food,foodFile);
         exit(EXIT_FAILURE);
     }
     char *str = malloc(sizeof(char)*MAX_LENGTH);
     while (fscanf(f,"%s",str)==1){
+        //printf("decryption\n");
         for (int i=0;str[i]!='\0';i++){
+            //fprintf(stdout,"before : %c\n",str[i]);
             decrypt(str+i,KEY_TEXT[i%strlen(KEY_TEXT)]);
+            //fprintf(stdout,"after : %c\n",str[i]);
         }
-        fprintf(stdout,"%s",str);
+        fprintf(stdout,"%s\n",str);
+        // printf("encryption\n");
+        // for (int i=0;str[i]!='\0';i++){
+        //     //fprintf(stdout,"before : %c\n",str[i]);
+        //     encrypt(str+i,KEY_TEXT[i%strlen(KEY_TEXT)]);
+        //     //fprintf(stdout,"after : %c\n",str[i]);
+        // }
+        // fprintf(stdout,"%s\n",str);
     }
 
     free(str);
+    free(foodFile);
 }
