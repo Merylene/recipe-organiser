@@ -16,9 +16,13 @@ include_directories(include)
 set(SOURCE_FILES main.c utils.c view.c admin.c admin_utils.c)
 
 # Create the build directory if it doesn't exist
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/build)
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # Specify the output directory for the executable
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-add_executable(recipe.exe ${SOURCE_FILES})  # Create an executable named "recipe.exe" from the source files
+# Create the build directory if it doesn't exist
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin/data)
+
+add_executable(recipe ${SOURCE_FILES})  # Create an executable named "recipe.exe" from the source files
+ 
