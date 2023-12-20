@@ -15,7 +15,7 @@ int main (int argc, char *argv[]){
 
     char *mode = change_case(argv[1]); //changes the mode selection to a lower case
 
-    create_dir("data");
+    //create_dir("data");
 
     if (strcmp(mode,"view")==0){
         fprintf(stdout,"Currently in Viewing mode!\n");
