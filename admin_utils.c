@@ -9,7 +9,7 @@ bool check_pass(char const *pass){
     char *passPath = malloc(sizeof(char)*MAX_LENGTH);
     strcpy(passPath,DATA_PATH);
     strcat(passPath,PASS_TXT);
-    printf("the location of password is in %s",passPath);
+    printf("the location of password is in %s\n",passPath);
     FILE *setPass =fopen(passPath,"r");
     if(setPass==NULL){
         fprintf(stderr,"%s does not exist will proceed to create a file\n",passPath);
