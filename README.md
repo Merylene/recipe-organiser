@@ -2,8 +2,13 @@
 This final project should help people to organise their recipes so that it could be accessed with just typing
 
 # Usage of the Program
+For admin access
 ```
-./recipe.exe mode (edit/view)
+./recipe.exe edit
+```
+For normal viewing
+```
+./recipe.exe view
 ```
 
 for edit password will be required (all passwords/recipes will be encypted so that the access point will only be the program)
@@ -22,7 +27,7 @@ Navigate to the project
 cd /path/to/your/project
 ```
 
-Create a direcctor to build files
+Create a directory to build files
 ```
 mkdir build
 cd build
