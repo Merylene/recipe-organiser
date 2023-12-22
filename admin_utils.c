@@ -3,17 +3,26 @@
 #include"utils.h"
 #include "admin_utils.h"
 
-#define PASS_TXT "pass.txt"
+#define PASS_PATH "./data/pass.txt"
+
+#define MAX_LOOP 10
+
+void check_password_file(void){
+    FILE *pass= fopen(PASS_PATH,"r");
+    if (pass==NULL){
+        printf("first time entering system pass will be created kindly enter your password\n");
+        password_change();
+    }
+
+    fclose(pass);
+}
 
 bool check_pass(char const *pass){
-    char *passPath = malloc(sizeof(char)*MAX_LENGTH);
-    strcpy(passPath,DATA_PATH);
-    strcat(passPath,PASS_TXT);
-    printf("the location of password is in %s\n",passPath);
-    FILE *setPass =fopen(passPath,"r");
+    printf("the location of password is in %s\n",PASS_PATH);
+    FILE *setPass =fopen(PASS_PATH,"r");
     if(setPass==NULL){
-        fprintf(stderr,"%s does not exist will proceed to create a file\n",passPath);
-        password_change();
+        fprintf(stderr,"%s does not exist exiting..\n",PASS_PATH);
+        exit(EXIT_FAILURE);
     }
     char *storedPass = malloc(sizeof(char)*MAX_LENGTH);
     fscanf(setPass,"%s",storedPass);
@@ -24,14 +33,43 @@ bool check_pass(char const *pass){
         return true;
     }
 
-    free(passPath);
     free(storedPass);
     return false;
 }
 
 
 void password_change(void){
+        FILE *pass =fopen(PASS_PATH,"w+");
+        char *p = malloc(sizeof(char)*MAX_LENGTH);
+        char *r = malloc(sizeof(char)*MAX_LENGTH);
+        for (int i = 0;i<MAX_LOOP; i++){
+            scanf("%s",p);
+            printf("Please re-enter your password\n");
+            scanf("%s",r);
+            if (i ==MAX_LOOP-1){
+                printf("You have reached the maximum number of times\n");
+                exit(EXIT_FAILURE);
+            }
+            else if (strcmp(p,r)!=0){
+                printf("Passwords do not match, try again\n");
+                continue;
+            }
+            else if (strcmp(p,r)==0){
+                printf("Proceeding to change password\n");
+                break;
+            }
+        }
+        
+        for (int j =0; p[j]!='\0';j++){
+            encrypt(p+j,KEY_TEXT[j%strlen(KEY_TEXT)]);
+        }
+        fprintf(pass,"%s",p);
+        printf("Saving password\n");
 
+    
+        free(p);
+        free(r);
+        fclose(pass);
 }
 
 void new_recipe(void){
