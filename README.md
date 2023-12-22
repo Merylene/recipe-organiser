@@ -34,4 +34,7 @@ cd build
 cmake .. 
 make
 ```
-
+if on wsl and want to excecute all at once could do this it will do all the steps at once
+```
+mkdir build;cd build;cmake .. ;make
+```

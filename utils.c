@@ -26,20 +26,6 @@ char *change_case(char const *str){
 
 
 bool search (char const *name){
-    // FILE *menu =fopen(MENU,"a+");// used a+ for reading and appending of data
-    // if (menu ==NULL){
-    //     fprintf(stderr,"%s not found\n",MENU);
-    //     exit(EXIT_FAILURE); //EXIT FAILURE = 1
-    // }
-    // printf("%s\n",name);
-    // char *check = malloc(MAX_LENGTH*sizeof(char));
-    // while (fscanf(menu,"%s",check)==1){
-    //     if (strcmp(check,name)==0){
-    //         return true;
-    //     }
-    // }
-    // free(check);
-    // fclose(menu);
     char *file_name = malloc(MAX_LENGTH*sizeof(char));
     strcpy(file_name,DATA_PATH);
     printf("file_path is %s\n",file_name);
