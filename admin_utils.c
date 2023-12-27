@@ -72,12 +72,24 @@ void password_change(void){
         fclose(pass);
 }
 
-// void file_edit(char const* food){
-//     char *fileName = malloc(MAX_LENGTH*sizeof(char));
-//     path(food,fileName);
+void file_edit(char const* food){
+    char *fileName = malloc(MAX_LENGTH*sizeof(char));
+    path(food,fileName);
+    FILE *f = fopen(fileName,"w+");
+    printf("please tap on enter once you are done twice\n");
+    char *edit = malloc(MAX_LENGTH*sizeof(char));
+    for (int i =0;scanf("%s",edit)==1;i++){
+        printf("edit :%s\n",edit);
+        for (int j =0; edit[j]!='\0';j++){
+            encrypt(edit+j,KEY_TEXT[j%strlen(KEY_TEXT)]);
+        }
+        fprintf(f,"%s",edit);
+    }
+    
 
-//     free(fileName);
-// }
+    fclose(f);
+    free(fileName);
+}
 
 void new_recipe(void){
     char *new = malloc(MAX_LENGTH*sizeof(char));
@@ -88,12 +100,17 @@ void new_recipe(void){
         exit(EXIT_FAILURE);
     }
     else if (!check){
-        //file_edit(new);
+        file_edit(new);
     }
 
     free(new);
 }
 
 void edit_recipe(void){
-
+    char *food = malloc(MAX_LENGTH*sizeof(char));
+    printf("what file would you like to edit?\n");
+    scanf("%s",food);
+    read_data(food);
+    file_edit(food);
+    free(food);
 }
