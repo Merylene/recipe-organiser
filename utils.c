@@ -109,8 +109,9 @@ void decrypt (char *letter , char keyText)
 
 void read_data(char const *food){
     char *foodFile = malloc(MAX_LENGTH*sizeof(char));
-    strcpy(foodFile,DATA_PATH);
-    strcat(foodFile,food);
+    
+    path(food,foodFile);
+
     FILE *f =fopen(foodFile,"r");
     if (f==NULL){
         fprintf(stderr,"%s's DATA PATH :%s cannot be opened.\n",food,foodFile);
@@ -136,4 +137,9 @@ void read_data(char const *food){
 
     free(str);
     free(foodFile);
+}
+
+void path(char *food,char *dest){
+    strcpy(dest,DATA_PATH);
+    strcat(dest,food);
 }
