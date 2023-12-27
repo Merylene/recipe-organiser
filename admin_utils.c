@@ -72,10 +72,12 @@ void password_change(void){
         fclose(pass);
 }
 
-void file_edit(char const* food){
-    char *fileName = malloc(MAX_LENGTH*sizeof(char));
-    free(fileName);
-}
+// void file_edit(char const* food){
+//     char *fileName = malloc(MAX_LENGTH*sizeof(char));
+//     path(food,fileName);
+
+//     free(fileName);
+// }
 
 void new_recipe(void){
     char *new = malloc(MAX_LENGTH*sizeof(char));
@@ -86,7 +88,7 @@ void new_recipe(void){
         exit(EXIT_FAILURE);
     }
     else if (!check){
-        file_edit(new);
+        //file_edit(new);
     }
 
     free(new);
