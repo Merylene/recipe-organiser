@@ -27,12 +27,13 @@ char *change_case(char const *str){
 
 bool search (char const *name){
     char *file_name = malloc(MAX_LENGTH*sizeof(char));
-    strcpy(file_name,DATA_PATH);
-    printf("file_path is %s\n",file_name);
-    strcat(file_name,name);
-    printf("file_name is %s\n",file_name);
-    strcat(file_name,FILE_TYPE);
-    printf("file_name is now %s\n",file_name);
+    path(name,file_name);
+    // strcpy(file_name,DATA_PATH);
+    // printf("file_path is %s\n",file_name);
+    // strcat(file_name,name);
+    // printf("file_name is %s\n",file_name);
+    // strcat(file_name,FILE_TYPE);
+    // printf("file_name is now %s\n",file_name);
     FILE *f =fopen(file_name, "r");
     if (f !=NULL){
         fprintf(stdout,"%s does exist!!\n",name);
@@ -109,7 +110,7 @@ void decrypt (char *letter , char keyText)
 
 void read_data(char const *food){
     char *foodFile = malloc(MAX_LENGTH*sizeof(char));
-    
+
     path(food,foodFile);
 
     FILE *f =fopen(foodFile,"r");
@@ -139,7 +140,11 @@ void read_data(char const *food){
     free(foodFile);
 }
 
-void path(char *food,char *dest){
+void path(char const *food,char *dest){
     strcpy(dest,DATA_PATH);
+    printf("dest is currently %s\n",dest);
     strcat(dest,food);
+    printf("dest is currently %s\n",dest);
+    strcat(dest,FILE_TYPE);
+    printf("dest is currently %s\n",dest);
 }
