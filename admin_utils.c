@@ -76,9 +76,13 @@ void file_edit(char const* food){
     char *fileName = malloc(MAX_LENGTH*sizeof(char));
     path(food,fileName);
     FILE *f = fopen(fileName,"w+");
-    printf("please tap on enter once you are done twice\n");
+    printf("please type done once done\n");
     char *edit = malloc(MAX_LENGTH*sizeof(char));
-    for (int i =0;scanf("%s",edit)==1;i++){
+    for (int i =0;fgets(edit, MAX_LENGTH, stdin) != NULL; i++){
+        if (strcmp(change_case(edit),"done")==0){
+            printf("done!! Exiting app\n");
+            exit(EXIT_SUCCESS);
+        }
         printf("edit :%s\n",edit);
         for (int j =0; edit[j]!='\0';j++){
             encrypt(edit+j,KEY_TEXT[j%strlen(KEY_TEXT)]);
