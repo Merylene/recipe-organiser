@@ -120,20 +120,10 @@ void read_data(char const *food){
     }
     char *str = malloc(sizeof(char)*MAX_LENGTH);
     while (fscanf(f,"%s",str)==1){
-        //printf("decryption\n");
         for (int i=0;str[i]!='\0';i++){
-            //fprintf(stdout,"before : %c\n",str[i]);
             decrypt(str+i,KEY_TEXT[i%strlen(KEY_TEXT)]);
-            //fprintf(stdout,"after : %c\n",str[i]);
         }
         fprintf(stdout,"%s\n",str);
-        // printf("encryption\n");
-        // for (int i=0;str[i]!='\0';i++){
-        //     //fprintf(stdout,"before : %c\n",str[i]);
-        //     encrypt(str+i,KEY_TEXT[i%strlen(KEY_TEXT)]);
-        //     //fprintf(stdout,"after : %c\n",str[i]);
-        // }
-        // fprintf(stdout,"%s\n",str);
     }
 
     free(str);
