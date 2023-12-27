@@ -22,8 +22,6 @@ void view (void){
         int response = 0;
         scanf("%d",&response);
         if (response == YES){
-            strcat(food,FILE_TYPE);
-            printf("what is food now: %s\n",food);
             read_data(food);
         }
         else if (response == NO){
