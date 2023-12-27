@@ -33,3 +33,6 @@ void __tolower(char *str);
 
 //used to read data for a particular food
 void read_data(char const *food);
+
+//used to compact the path as the command have been constantly repeated
+void path(char const *food,char *dest);

@@ -10,6 +10,7 @@ enum { PASS_CHANGE =1 ,ADD_NEW,EDIT_RECIPE, VIEW};
 void edit (void){
     char *pass = malloc(sizeof(char)*MAX_LENGTH);
     bool correctPass;
+    check_password_file();
     do{
         fprintf(stdout,"Please enter Password :");
         scanf("%s",pass);

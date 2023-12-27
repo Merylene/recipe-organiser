@@ -27,12 +27,7 @@ char *change_case(char const *str){
 
 bool search (char const *name){
     char *file_name = malloc(MAX_LENGTH*sizeof(char));
-    strcpy(file_name,DATA_PATH);
-    printf("file_path is %s\n",file_name);
-    strcat(file_name,name);
-    printf("file_name is %s\n",file_name);
-    strcat(file_name,FILE_TYPE);
-    printf("file_name is now %s\n",file_name);
+    path(name,file_name);
     FILE *f =fopen(file_name, "r");
     if (f !=NULL){
         fprintf(stdout,"%s does exist!!\n",name);
@@ -109,8 +104,9 @@ void decrypt (char *letter , char keyText)
 
 void read_data(char const *food){
     char *foodFile = malloc(MAX_LENGTH*sizeof(char));
-    strcpy(foodFile,DATA_PATH);
-    strcat(foodFile,food);
+
+    path(food,foodFile);
+
     FILE *f =fopen(foodFile,"r");
     if (f==NULL){
         fprintf(stderr,"%s's DATA PATH :%s cannot be opened.\n",food,foodFile);
@@ -118,22 +114,21 @@ void read_data(char const *food){
     }
     char *str = malloc(sizeof(char)*MAX_LENGTH);
     while (fscanf(f,"%s",str)==1){
-        //printf("decryption\n");
         for (int i=0;str[i]!='\0';i++){
-            //fprintf(stdout,"before : %c\n",str[i]);
             decrypt(str+i,KEY_TEXT[i%strlen(KEY_TEXT)]);
-            //fprintf(stdout,"after : %c\n",str[i]);
         }
         fprintf(stdout,"%s\n",str);
-        // printf("encryption\n");
-        // for (int i=0;str[i]!='\0';i++){
-        //     //fprintf(stdout,"before : %c\n",str[i]);
-        //     encrypt(str+i,KEY_TEXT[i%strlen(KEY_TEXT)]);
-        //     //fprintf(stdout,"after : %c\n",str[i]);
-        // }
-        // fprintf(stdout,"%s\n",str);
     }
 
     free(str);
     free(foodFile);
+}
+
+void path(char const *food,char *dest){
+    strcpy(dest,DATA_PATH);
+    printf("dest is currently %s\n",dest);
+    strcat(dest,food);
+    printf("dest is currently %s\n",dest);
+    strcat(dest,FILE_TYPE);
+    printf("dest is currently %s\n",dest);
 }
