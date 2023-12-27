@@ -72,8 +72,24 @@ void password_change(void){
         fclose(pass);
 }
 
-void new_recipe(void){
+void file_edit(char const* food){
+    char *fileName = malloc(MAX_LENGTH*sizeof(char));
+    free(fileName);
+}
 
+void new_recipe(void){
+    char *new = malloc(MAX_LENGTH*sizeof(char));
+    scanf("%s",new);
+    bool check = search(new);
+    if (check){ // means if check is true
+        printf("recipe for %s already exist",new);
+        exit(EXIT_FAILURE);
+    }
+    else if (!check){
+        file_edit(new);
+    }
+
+    free(new);
 }
 
 void edit_recipe(void){
