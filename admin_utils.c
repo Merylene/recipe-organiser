@@ -18,7 +18,7 @@ void check_password_file(void){
 }
 
 bool check_pass(char const *pass){
-    printf("the location of password is in %s\n",PASS_PATH);
+    // printf("the location of password is in %s\n",PASS_PATH);
     FILE *setPass =fopen(PASS_PATH,"r");
     if(setPass==NULL){
         fprintf(stderr,"%s does not exist exiting..\n",PASS_PATH);
@@ -79,14 +79,14 @@ void file_edit(char const* food){
     printf("please type done once done\n");
     char *edit = malloc(MAX_LENGTH*sizeof(char));
     for (int i =0;fgets(edit, MAX_LENGTH, stdin) != NULL; i++){
-        if (strcmp(change_case(edit),"done")==0){
+        if (strcmp(change_case(edit),"done\n")==0){
             printf("done!! Exiting app\n");
             exit(EXIT_SUCCESS);
         }
         printf("edit :%s\n",edit);
-        for (int j =0; edit[j]!='\0';j++){
-            encrypt(edit+j,KEY_TEXT[j%strlen(KEY_TEXT)]);
-        }
+        // for (int j =0; edit[j]!='\0';j++){
+        //     encrypt(edit+j,KEY_TEXT[j%strlen(KEY_TEXT)]);
+        // }
         fprintf(f,"%s",edit);
     }
     

@@ -30,7 +30,7 @@ bool search (char const *name){
     path(name,file_name);
     FILE *f =fopen(file_name, "r");
     if (f !=NULL){
-        fprintf(stdout,"%s does exist!!\n",name);
+        // fprintf(stdout,"%s does exist!!\n",name);
         fclose(f);
         return true;
     }
@@ -113,10 +113,10 @@ void read_data(char const *food){
         exit(EXIT_FAILURE);
     }
     char *str = malloc(sizeof(char)*MAX_LENGTH);
-    while (fscanf(f,"%s",str)==1){
-        for (int i=0;str[i]!='\0';i++){
-            decrypt(str+i,KEY_TEXT[i%strlen(KEY_TEXT)]);
-        }
+    while (fgets(str, MAX_LENGTH, f)!=NULL){ 
+        // for (int i=0;str[i]!='\0';i++){
+        //     decrypt(str+i,KEY_TEXT[i%strlen(KEY_TEXT)]);
+        // }
         fprintf(stdout,"%s\n",str);
     }
 
@@ -126,9 +126,9 @@ void read_data(char const *food){
 
 void path(char const *food,char *dest){
     strcpy(dest,DATA_PATH);
-    printf("dest is currently %s\n",dest);
+    // printf("dest is currently %s\n",dest);
     strcat(dest,food);
-    printf("dest is currently %s\n",dest);
+    // printf("dest is currently %s\n",dest);
     strcat(dest,FILE_TYPE);
-    printf("dest is currently %s\n",dest);
+    // printf("dest is currently %s\n",dest);
 }
