@@ -89,18 +89,18 @@ void decrypt (char *letter , char keyText)
 }
 
 // //used to create a directory/file
-// void create_dir(char const* directory_name){
-//         struct stat st = {0};
+void create_dir(char const* directory_name){
+        struct stat st = {0};
 
-//     if (stat(directory_name, &st) == -1) { //stat is used to get the status of the directory
-//         if (mkdir(directory_name,0700) == -1) {
-//             fprintf(stderr,"Unable to create directory %s\n",directory_name);//perror = fprintf(stderr, blah blah)
-//             exit(EXIT_FAILURE);
-//         }
-//     } else {
-//         fprintf(stdout,"Directory %s already exists\n",directory_name);
-//     }
-// }
+    if (stat(directory_name, &st) == -1) { //stat is used to get the status of the directory
+        if (mkdir(directory_name) == -1) {
+            fprintf(stderr,"Unable to create directory %s\n",directory_name);//perror = fprintf(stderr, blah blah)
+            exit(EXIT_FAILURE);
+        }
+    } else {
+        fprintf(stdout,"Directory %s already exists\n",directory_name);
+    }
+}
 
 void read_data(char const *food){
     char *foodFile = malloc(MAX_LENGTH*sizeof(char));
