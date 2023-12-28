@@ -19,7 +19,7 @@ void edit (void){
             fprintf(stdout,"Correct Password! Now entering into the system!\n");
             int selection =0;
             do {
-                fprintf(stdout," (1 = Change Password, 2 = Add New Recipes, 3 = Edit Stored Recipe, 4 = View Recipes)\n");
+                fprintf(stdout,"(1 = Change Password, 2 = Add New Recipes, 3 = Edit Stored Recipe, 4 = View Recipes)\n");
                 scanf("%d",&selection);
                 if (selection == PASS_CHANGE){
                     printf("What password would you like to change to? \n");
