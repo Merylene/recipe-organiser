@@ -38,3 +38,8 @@ if on wsl and want to excecute all at once could do this it will do all the step
 ```
 mkdir build;cd build;cmake .. ;make
 ```
+
+# Parts that need help with 
+1. how to remove an awkward line that is created while trying to enter the recipe
+2. encryption and decryption of text 
+would appreciate if there are anyone that is willing to help :)
