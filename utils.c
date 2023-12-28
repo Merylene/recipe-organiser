@@ -30,7 +30,7 @@ bool search (char const *name){
     path(name,file_name);
     FILE *f =fopen(file_name, "r");
     if (f !=NULL){
-        fprintf(stdout,"%s does exist!!\n",name);
+        // fprintf(stdout,"%s does exist!!\n",name);
         fclose(f);
         return true;
     }
@@ -89,18 +89,18 @@ void decrypt (char *letter , char keyText)
 }
 
 // //used to create a directory/file
-// void create_dir(char const* directory_name){
-//         struct stat st = {0};
+void create_dir(char const* directory_name){
+        struct stat st = {0};
 
-//     if (stat(directory_name, &st) == -1) { //stat is used to get the status of the directory
-//         if (mkdir(directory_name,0700) == -1) {
-//             fprintf(stderr,"Unable to create directory %s\n",directory_name);//perror = fprintf(stderr, blah blah)
-//             exit(EXIT_FAILURE);
-//         }
-//     } else {
-//         fprintf(stdout,"Directory %s already exists\n",directory_name);
-//     }
-// }
+    if (stat(directory_name, &st) == -1) { //stat is used to get the status of the directory
+        if (mkdir(directory_name) == -1) {
+            fprintf(stderr,"Unable to create directory %s\n",directory_name);//perror = fprintf(stderr, blah blah)
+            exit(EXIT_FAILURE);
+        }
+    } else {
+        fprintf(stdout,"Directory %s already exists\n",directory_name);
+    }
+}
 
 void read_data(char const *food){
     char *foodFile = malloc(MAX_LENGTH*sizeof(char));
@@ -113,10 +113,10 @@ void read_data(char const *food){
         exit(EXIT_FAILURE);
     }
     char *str = malloc(sizeof(char)*MAX_LENGTH);
-    while (fscanf(f,"%s",str)==1){
-        for (int i=0;str[i]!='\0';i++){
-            decrypt(str+i,KEY_TEXT[i%strlen(KEY_TEXT)]);
-        }
+    while (fgets(str, MAX_LENGTH, f)!=NULL){ 
+        // for (int i=0;str[i]!='\0';i++){
+        //     decrypt(str+i,KEY_TEXT[i%strlen(KEY_TEXT)]);
+        // }
         fprintf(stdout,"%s\n",str);
     }
 
@@ -126,9 +126,9 @@ void read_data(char const *food){
 
 void path(char const *food,char *dest){
     strcpy(dest,DATA_PATH);
-    printf("dest is currently %s\n",dest);
+    // printf("dest is currently %s\n",dest);
     strcat(dest,food);
-    printf("dest is currently %s\n",dest);
+    // printf("dest is currently %s\n",dest);
     strcat(dest,FILE_TYPE);
-    printf("dest is currently %s\n",dest);
+    // printf("dest is currently %s\n",dest);
 }
