@@ -78,7 +78,8 @@ void file_edit(char const* food){
     FILE *f = fopen(fileName,"w+");
     printf("please type done once done\n");
     char *edit = malloc(MAX_LENGTH*sizeof(char));
-    for (int i =0;fgets(edit, MAX_LENGTH, stdin) != NULL; i++){
+    for (int i =0;i<MAX_LENGTH; i++){ //using max_length as a limit
+        fgets(edit, MAX_LENGTH, stdin);
         if (strcmp(change_case(edit),"done\n")==0){
             printf("done!! Exiting app\n");
             exit(EXIT_SUCCESS);
