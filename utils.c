@@ -132,3 +132,11 @@ void path(char const *food,char *dest){
     strcat(dest,FILE_TYPE);
     // printf("dest is currently %s\n",dest);
 }
+
+void replace_space(char *food){
+    for (int i=0; food[i]!='\0';i++){
+        if (food[i]==' '){
+            food[i]='_';
+        }
+    }
+}
