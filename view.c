@@ -10,7 +10,11 @@ void view (void){
     char *food = (char *)malloc(sizeof(char)*MAX_LENGTH);
     //check what file the user would like to view
     printf("What food would you like to have ?");
-    scanf("%s",food);
+    fgets(food, MAX_LENGTH, stdin);
+    food[strcspn(food, "\n")] = '\0';  // Remove the newline character
+    // scanf("%s",food);
+    printf("food is :%s\n",food);
+    replace_space(food);
     printf("food is :%s\n",food);
     bool exist = search(food);
     if (exist ==false){

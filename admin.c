@@ -13,7 +13,9 @@ void edit (void){
     check_password_file();
     do{
         fprintf(stdout,"Please enter Password :");
-        scanf("%s",pass);
+        fgets(pass, MAX_LENGTH, stdin);
+        pass[strcspn(pass, "\n")] = '\0';  // Remove the newline character
+        // scanf("%s",pass);
         correctPass = check_pass(pass);
         if (correctPass){ //if correctPass == true 
             fprintf(stdout,"Correct Password! Now entering into the system!\n");

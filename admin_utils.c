@@ -43,9 +43,14 @@ void password_change(void){
         char *p = malloc(sizeof(char)*MAX_LENGTH);
         char *r = malloc(sizeof(char)*MAX_LENGTH);
         for (int i = 0;i<MAX_LOOP; i++){
-            scanf("%s",p);
+            fgets(p, MAX_LENGTH, stdin);
+            p[strcspn(p, "\n")] = '\0';  // Remove the newline character
+            
             printf("Please re-enter your password\n");
-            scanf("%s",r);
+
+            fgets(r, MAX_LENGTH, stdin);
+            r[strcspn(r, "\n")] = '\0';  // Remove the newline character
+
             if (i ==MAX_LOOP-1){
                 printf("You have reached the maximum number of times\n");
                 exit(EXIT_FAILURE);
