@@ -36,3 +36,5 @@ void read_data(char const *food);
 
 //used to compact the path as the command have been constantly repeated
 void path(char const *food,char *dest);
+
+void replace_space(char *food);
