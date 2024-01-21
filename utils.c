@@ -93,7 +93,7 @@ void create_dir(char const* directory_name){
         struct stat st = {0};
 
     if (stat(directory_name, &st) == -1) { //stat is used to get the status of the directory
-        if (mkdir(directory_name) == -1) {
+        if (mkdir(directory_name, S_IRUSR | S_IWUSR | S_IXUSR) == -1) {
             fprintf(stderr,"Unable to create directory %s\n",directory_name);//perror = fprintf(stderr, blah blah)
             exit(EXIT_FAILURE);
         }
